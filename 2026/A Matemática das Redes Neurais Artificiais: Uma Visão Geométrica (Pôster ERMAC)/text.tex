@@ -1,0 +1,107 @@
+\documentclass{ermacrs2025C}
+
+\usepackage{times}
+\portuguese
+
+\title{A Matemática das Redes Neurais Artificias:\\Uma Visão Geométrica}
+
+\author{Davi Picanço dos Reis}{Universidade Federal do Oeste do
+Pará}{davipicancodosreis@gmail.com}
+\author{Helaine Cristina Moraes Furtado}{Universidade Federal do
+Oeste do Pará}{helaine.furtado@ufopa.edu.br}
+
+\abstract{As Redes Neurais Artificiais tornaram-se essenciais para a
+  ciência e tecnologia nas últimas décadas, ganhando grande
+  popularidade. Contudo, seu funcionamento técnico costuma ser
+  restrito a especialistas, o que gera uma percepção "mágica" no público geral.
+  Nesse contexto, este trabalho apresenta os fundamentos matemáticos e
+  a interpretação geométrica dessas redes, visando promover uma
+  compreensão intuitiva e introdutória sobre o tema.
+}
+
+\keyword{Redes Neurais Artificiais}
+\keyword{Machine Learning}
+\keyword{Inteligência Artificial}
+\keyword{Álgebra Linear}
+
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+
+Uma Rede Neural Artificial (RNA) é um modelo computacional inspirado
+pelo funcionamento do cérebro humano. É formada por vários neurônios
+conectados que transferem informação entre si. E o seu principal
+objetivo é desenvolver a capacidade de aprender com a experiência, ou
+seja, aprender diretamente dos dados.
+
+\section{Formulação Matemática}
+
+\subsection{A Estrutura do Neurônio}
+
+O Perceptron é o modelo mais simples de neurônio, ele é a unidade
+computacional básica de uma RNA. O neurônio é responsável por receber
+dados, na forma de vetor, fazer o processamento e retornar um valor
+real. Definimos então o neurônio como uma função $y:\mathbb
+V^n\rightarrow \mathbb R$, onde $n$ é um natural não nulo e é dada por
+\begin{equation}
+  y(\mathbf x)=\varphi(\mathbf w^T\cdot \mathbf x+b)
+\end{equation}
+
+O vetor $\mathbf x$ é o vetor com os dados de entrada, $\mathbf w$ é
+o vetor de pesos, ou parâmetros, que também tem dimensão $n$, $b$ é o
+\textit{bias}, $\varphi$ é chamada de função de ativação e $y(\mathbf
+x)$ é o resultado do processamento ou a ativação do neurônio, dada
+uma entrada de dados.
+
+\subsection{Generalização para Várias Camadas}
+
+Para lidar com o processamento em várias camadas definimos, para uma
+rede com $n$ camadas:
+\begin{equation}
+  Z_k=W_k\cdot A_{k-1}+B_k\text{ com }
+  \begin{cases}
+    A_0=\mathbf x\\
+    A_k=\varphi(Z_k)
+  \end{cases}
+\end{equation}
+
+Nesse caso $W_k$ é a matriz de pesos relacionando cada cada neurônio
+da camada anterior à camada atual, $A_k$ é o vetor contendo o
+resultado da ativação de cada neurônio da camada $k$ e $B_k$ é o vetor
+com os \textit{biases} de cada neurônio dessa mesma camada. Nesse
+caso, o resultado $y$ da rede é dado pelo vetor $A_n$ (a última camada).
+
+\subsection{Treinando uma Rede Neural Artificial}
+
+O processo de treinamento de uma RNA consiste basicamente em 3 etapas.
+
+Na primeira etapa definimos uma função $J$ que mede o quanto a rede
+erra nas suas previsões, por exemplo, podemos utilizar o erro quadrático médio:
+\begin{equation}
+  J=\frac{1}{n}\sum_{i=1}^{n}(\hat y_i-y_i)^2
+\end{equation}
+
+Dada a função de erro podemos identificar, por meio do gradiente de
+$J$, os ajustes necessários para minimizar o erro. Assim, os novos pesos
+podem ser calculados pela seguinte expressão:
+\begin{equation}
+  W_k^*=W_k-\eta\frac{\partial J}{\partial W_k}, \eta\in\mathbb R^+
+\end{equation}
+
+E por fim, para calcular os ajustes necessário para os parâmetros
+$W_k$, a derivada parcial de $J$ em relação ao peso $W_k$, utilizamos
+a regra da cadeia:
+\begin{equation}
+  \frac{\partial J}{\partial W_k}=\frac{\partial J}{\partial
+  A_k}\frac{\partial A_k}{\partial Z_k}\frac{\partial Z_k}{\partial W_k}
+\end{equation}
+
+\section{Interpretação Geométrica}
+
+\section{Conclusão}
+
+\printreferences
+
+\end{document}
