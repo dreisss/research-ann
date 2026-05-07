@@ -150,14 +150,14 @@
 % \tl_gset:Nn \g_st_tl {Sem~ST}
 
 % Comando para definir ST
-\NewDocumentCommand \setST { m }{
-  \tl_gset:Nn \g_st_tl { #1 }
-}
+% \NewDocumentCommand \setST { m }{
+%   \tl_gset:Nn \g_st_tl { #1 }
+% }
 
 % Comando para imprimir ST
-\NewDocumentCommand \printST { }{
-  \tl_use:N \g_st_tl
-}
+% \NewDocumentCommand \printST { }{
+%   \tl_use:N \g_st_tl
+% }
 
 %%% Referências %%%
 % Variável para o título das referências
@@ -410,7 +410,7 @@
 \fancyhead[CE]{{}}
 \fancyhead[CO]{{}}
 \rfoot{\thepage}
-\lfoot{\printST}
+% \lfoot{\printST}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Impressão de título, nomes, filiação, e-mail, resumo e palavras

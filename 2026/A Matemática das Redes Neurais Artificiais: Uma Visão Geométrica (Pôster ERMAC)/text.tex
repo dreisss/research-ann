@@ -28,7 +28,7 @@ Oeste do Pará}{helaine.furtado@ufopa.edu.br}
 
 \maketitle
 
-\section{Introdução}
+\section{Discussão}
 
 Uma Rede Neural Artificial (RNA) é um modelo computacional inspirado
 pelo funcionamento do cérebro humano. É formada por vários neurônios
@@ -36,15 +36,10 @@ conectados que transferem informação entre si. E o seu principal
 objetivo é desenvolver a capacidade de aprender com a experiência, ou
 seja, aprender diretamente dos dados.
 
-\section{Formulação Matemática}
-
-\subsection{A Estrutura do Neurônio}
-
 O Perceptron é o modelo mais simples de neurônio, ele é a unidade
-computacional básica de uma RNA. O neurônio é responsável por receber
+computacional básica de uma RNA. Ele é responsável por receber
 dados, na forma de vetor, fazer o processamento e retornar um valor
-real. Definimos então o neurônio como uma função $y:\mathbb
-V^n\rightarrow \mathbb R$, onde $n$ é um natural não nulo e é dada por
+real. Assim, o seu processamento pode ser representado pela equação:
 \begin{equation}
   y(\mathbf x)=\varphi(\mathbf w^T\cdot \mathbf x+b)
 \end{equation}
@@ -55,52 +50,61 @@ o vetor de pesos, ou parâmetros, que também tem dimensão $n$, $b$ é o
 x)$ é o resultado do processamento ou a ativação do neurônio, dada
 uma entrada de dados.
 
-\subsection{Generalização para Várias Camadas}
+Agora, utilizando uma intuição geométrica, consideremos as seguintes
+afirmações como verdadeiras:
+\begin{itemize}
+  \item O produto escalar entre dois vetores mede a "similaridade"
+    entre dois vetores;
+  \item Dados podem ser vistos como pontos em um espaço;
+  \item Um vetor e um ponto determinam um hiperplano no espaço.
+\end{itemize}
 
-Para lidar com o processamento em várias camadas definimos, para uma
-rede com $n$ camadas:
+Por enquanto, tomemos a função de ativação $\varphi$ como a função
+identidade, de modo que não afete o resultado do processamento.
+Assim, considerando uma RNA já treinada, temos um vetor $\mathbf w$
+já definido. Levando em consideração os pontos podemos ter até 2
+níveis de uma interpretação geométrica.
+
+Primeiramente consideremos que o vetor de pesos $\mathbf w$ já
+treinado aponta para certa posição nesse espaço de dados, e quando
+fazemos o produto escalar do vetor de entradas $\mathbf x$ com ele o
+que estamos medindo é a similaridade entre eles, ou seja, de forma
+mais intuitiva, se eles estão próximos da mesma posição. Portanto,
+podemos dizer que um neurônio pode verificar, nessa representação de
+dados no espaço, se os dados de entrada estão próximos ao padrão
+esperado pelo neurônio.
+
+A segunda abordagem leva em consideração uma equação do plano:
+$p(x,y,z)=ax+bx+cx+d$. Podemos notar, ainda desconsiderando a função
+de ativação, que a equação (1) também é uma equação de plano, mas em
+um espaço multidimensional, ou seja, um hiperplano.
 \begin{equation}
-  Z_k=W_k\cdot A_{k-1}+B_k\text{ com }
-  \begin{cases}
-    A_0=\mathbf x\\
-    A_k=\varphi(Z_k)
-  \end{cases}
+  y(x_1,x_2,...,x_n)=w_1x_1+w_2x_2+...+w_nx_n+b
 \end{equation}
 
-Nesse caso $W_k$ é a matriz de pesos relacionando cada cada neurônio
-da camada anterior à camada atual, $A_k$ é o vetor contendo o
-resultado da ativação de cada neurônio da camada $k$ e $B_k$ é o vetor
-com os \textit{biases} de cada neurônio dessa mesma camada. Nesse
-caso, o resultado $y$ da rede é dado pelo vetor $A_n$ (a última camada).
+Nesse caso os $w_1,w_2,...,w_n,b$ seriam os coeficientes desse
+hiperplano. Ou seja, um neurônio já treinado determina um hiperplano
+no espaço de dados, e isso somado ao fato que os dados são pontos
+nesse espaço podemos dizer que o hiperplano separa os dados que tem
+certa semelhança dos que não tem.
 
-\subsection{Treinando uma Rede Neural Artificial}
+Entretanto, a gama de problemas lineares, que podem ser separados com
+uma reta, são muito menores que problemas não lineares. Assim, a
+função proporciona uma forma de torna o processamento menor linear.
+De forma intuitiva, o que a função de ativação faz é transformar,
+dobrar, o espaço de modo que os dados se tornem linearmente
+separáveis, que podem ser separados por uma linha reta.
 
-O processo de treinamento de uma RNA consiste basicamente em 3 etapas.
+Assim, temos a interpretação geométrica completa do processamento do
+neurônio, um neurônio é responsável por separar o espaço de dados em
+dois por meio de uma superfície, de modo a categorizar os dados que
+contribuem ou não para o padrão esperado pelo neurônio.
 
-Na primeira etapa definimos uma função $J$ que mede o quanto a rede
-erra nas suas previsões, por exemplo, podemos utilizar o erro quadrático médio:
-\begin{equation}
-  J=\frac{1}{n}\sum_{i=1}^{n}(\hat y_i-y_i)^2
-\end{equation}
-
-Dada a função de erro podemos identificar, por meio do gradiente de
-$J$, os ajustes necessários para minimizar o erro. Assim, os novos pesos
-podem ser calculados pela seguinte expressão:
-\begin{equation}
-  W_k^*=W_k-\eta\frac{\partial J}{\partial W_k}, \eta\in\mathbb R^+
-\end{equation}
-
-E por fim, para calcular os ajustes necessário para os parâmetros
-$W_k$, a derivada parcial de $J$ em relação ao peso $W_k$, utilizamos
-a regra da cadeia:
-\begin{equation}
-  \frac{\partial J}{\partial W_k}=\frac{\partial J}{\partial
-  A_k}\frac{\partial A_k}{\partial Z_k}\frac{\partial Z_k}{\partial W_k}
-\end{equation}
-
-\section{Interpretação Geométrica}
-
-\section{Conclusão}
+Podemos ainda extender essa interpretação para uma RNA com mais
+neurônios e camadas. Nesse caso cada neurônio fica responsável por
+segmentar os dados de uma forma diferente, e criando no espaço de
+dados vários subespaços que podem ser categorizados de acordo com o
+esperado pela rede.
 
 \printreferences
 
