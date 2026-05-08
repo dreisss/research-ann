@@ -13,10 +13,14 @@ Oeste do Pará}{helaine.furtado@ufopa.edu.br}
 \abstract{As Redes Neurais Artificiais tornaram-se essenciais para a
   ciência e tecnologia nas últimas décadas, ganhando grande
   popularidade. Contudo, seu funcionamento técnico costuma ser
-  restrito a especialistas, o que gera uma percepção "mágica" no público geral.
-  Nesse contexto, este trabalho apresenta os fundamentos matemáticos e
-  a interpretação geométrica dessas redes, visando promover uma
-  compreensão intuitiva e introdutória sobre o tema.
+  restrito a especialistas, o que gera uma percepção “mágica” no
+  público geral. Nesse contexto, este trabalho tem como objetivo
+  apresentar a fundamentação matemática das Redes Neurais
+  Artificiais, com ênfase em sua interpretação geométrica, visando
+  promover uma compreensão mais intuitiva e introdutória sobre o
+  tema. Para isso, são discutidos conceitos de Álgebra Linear
+  relacionados ao perceptron, ao produto escalar e à interpretação de
+  hiperplanos no espaço de dados.
 }
 
 \keyword{Redes Neurais Artificiais}
@@ -28,18 +32,20 @@ Oeste do Pará}{helaine.furtado@ufopa.edu.br}
 
 \maketitle
 
-\section{Discussão}
+\section{Desenvolvimento}
+
+\subsection{Formulação Matemática}
 
 Uma Rede Neural Artificial (RNA) é um modelo computacional inspirado
-pelo funcionamento do cérebro humano. É formada por vários neurônios
-conectados que transferem informação entre si. E o seu principal
-objetivo é desenvolver a capacidade de aprender com a experiência, ou
-seja, aprender diretamente dos dados.
+pelo funcionamento do cérebro humano [1]. É formada por vários
+neurônios conectados que transferem informação entre si [2]. E o seu
+principal objetivo é desenvolver a capacidade de aprender com a
+experiência, ou seja, aprender diretamente a partir dos dados [3].
 
 O Perceptron é o modelo mais simples de neurônio, ele é a unidade
-computacional básica de uma RNA. Ele é responsável por receber
+computacional básica de uma RNA [4]. Ele é responsável por receber
 dados, na forma de vetor, fazer o processamento e retornar um valor
-real. Assim, o seu processamento pode ser representado pela equação:
+real [5]. Assim, o seu processamento pode ser representado pela equação [6]:
 \begin{equation}
   y(\mathbf x)=\varphi(\mathbf w^T\cdot \mathbf x+b)
 \end{equation}
@@ -50,13 +56,15 @@ o vetor de pesos, ou parâmetros, que também tem dimensão $n$, $b$ é o
 x)$ é o resultado do processamento ou a ativação do neurônio, dada
 uma entrada de dados.
 
+\subsection{Interpretação Geométrica}
+
 Agora, utilizando uma intuição geométrica, consideremos as seguintes
 afirmações como verdadeiras:
 \begin{itemize}
-  \item O produto escalar entre dois vetores mede a "similaridade"
-    entre dois vetores;
-  \item Dados podem ser vistos como pontos em um espaço;
-  \item Um vetor e um ponto determinam um hiperplano no espaço.
+  \item O produto escalar fornece uma interpretação geométrica
+    relacionada à similaridade angular entre vetores [7];
+  \item Dados podem ser vistos como pontos em um espaço [8];
+  \item Um vetor e um ponto determinam um hiperplano no espaço [9].
 \end{itemize}
 
 Por enquanto, tomemos a função de ativação $\varphi$ como a função
@@ -67,15 +75,14 @@ níveis de uma interpretação geométrica.
 
 Primeiramente consideremos que o vetor de pesos $\mathbf w$ já
 treinado aponta para certa posição nesse espaço de dados, e quando
-fazemos o produto escalar do vetor de entradas $\mathbf x$ com ele o
-que estamos medindo é a similaridade entre eles, ou seja, de forma
-mais intuitiva, se eles estão próximos da mesma posição. Portanto,
-podemos dizer que um neurônio pode verificar, nessa representação de
-dados no espaço, se os dados de entrada estão próximos ao padrão
-esperado pelo neurônio.
+fazemos o produto escalar do vetor de entradas $\mathbf x$ com ele, o
+que se está medindo é a similaridade entre eles, ou seja, se eles estão próximos
+da mesma posição. Portanto, o neurônio pode avaliar, no espaço de
+dados, o grau de compatibilidade entre os dados de entrada e o padrão
+aprendido durante o treinamento.
 
 A segunda abordagem leva em consideração uma equação do plano:
-$p(x,y,z)=ax+bx+cx+d$. Podemos notar, ainda desconsiderando a função
+$p(x,y,z)=ax+bx+cz+d$. Podemos notar, ainda desconsiderando a função
 de ativação, que a equação (1) também é uma equação de plano, mas em
 um espaço multidimensional, ou seja, um hiperplano.
 \begin{equation}
@@ -88,23 +95,34 @@ no espaço de dados, e isso somado ao fato que os dados são pontos
 nesse espaço podemos dizer que o hiperplano separa os dados que tem
 certa semelhança dos que não tem.
 
-Entretanto, a gama de problemas lineares, que podem ser separados com
-uma reta, são muito menores que problemas não lineares. Assim, a
-função proporciona uma forma de torna o processamento menor linear.
-De forma intuitiva, o que a função de ativação faz é transformar,
-dobrar, o espaço de modo que os dados se tornem linearmente
-separáveis, que podem ser separados por uma linha reta.
+Entretanto, a classe de problemas linearmente separáveis é bastante
+limitada quando comparada aos problemas não lineares encontrados em
+aplicações reais. Nesse contexto, a função de ativação introduz não
+linearidades no processamento da rede neural, ampliando sua
+capacidade de representação. De forma geométrica, pode-se interpretar
+que a função de ativação transforma o espaço de representação dos
+dados, permitindo que padrões originalmente não separáveis
+linearmente passem a ser distinguidos por hiperplanos.
 
 Assim, temos a interpretação geométrica completa do processamento do
 neurônio, um neurônio é responsável por separar o espaço de dados em
 dois por meio de uma superfície, de modo a categorizar os dados que
 contribuem ou não para o padrão esperado pelo neurônio.
 
-Podemos ainda extender essa interpretação para uma RNA com mais
+Podemos ainda expandir essa interpretação para uma RNA com mais
 neurônios e camadas. Nesse caso cada neurônio fica responsável por
 segmentar os dados de uma forma diferente, e criando no espaço de
 dados vários subespaços que podem ser categorizados de acordo com o
 esperado pela rede.
+
+\section{Considerações Finais}
+A interpretação geométrica apresentada permite compreender as Redes
+Neurais Artificiais para além de uma visão puramente computacional,
+relacionando conceitos de Álgebra Linear, hiperplanos e separação de
+dados no espaço vetorial. Dessa forma, o trabalho contribui para uma
+compreensão mais intuitiva do funcionamento das RNAs, evidenciando
+como ferramentas matemáticas podem auxiliar na interpretação de
+modelos amplamente utilizados em Inteligência Artificial.
 
 \printreferences
 
