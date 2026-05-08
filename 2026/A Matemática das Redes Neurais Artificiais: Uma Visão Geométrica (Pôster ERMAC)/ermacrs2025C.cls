@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pacotes necessários para o adequado funcionamento da classe %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\RequirePackage[style=ieee,sortcites=true,sorting=nyt,backend=biber,language=brazilian]{biblatex}
+\RequirePackage[style=abnt,sortcites=true,sorting=nyt,backend=biber,language=brazilian]{biblatex}
 
 \RequirePackage{csquotes} % para citações
 \RequirePackage{titlesec} % personalizar as seções
@@ -285,10 +285,10 @@
 % Configurações da página %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newgeometry{
-  bottom = 2.5cm,
-  top = 1.25cm,
-  left = 2.5cm,
-  right = 2.5cm,
+  bottom = 2cm,
+  top = 1.5cm,
+  left = 3cm,
+  right = 2cm,
   headheight = 27.15pt
 }
 
